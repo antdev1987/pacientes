@@ -1,13 +1,36 @@
 import React, {useState} from 'react'
 
 const Formulario = () => {
-   const [nombre, setNombre] = useState('')
+   // const [nombre, setNombre] = useState('')
+   const [input, setInput] =useState({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
+
+   const {nombre,propietario,email,fecha,sintomas} = input
 
    const handleSubmit =(e)=>{
       e.preventDefault()
-      console.log('enviando submit')
+
+
+      if([nombre,propietario,email,fecha,sintomas].includes('')){
+         console.log('todo es obligatorio')
+      }else{
+         console.log('todo salio bien')
+      }
+
+      
+   }
+
+   const handleInputs =(e)=>{
+
+      setInput(
+         {
+            ...input,
+            [e.target.name]:e.target.value
+         }
+      )
 
    }
+
+
 
 
    return (
@@ -28,7 +51,9 @@ const Formulario = () => {
                   placeholder='Nombre de la Mascota'
                   className='border-2 w-full p-2 mt-2 rounded-md'
                   value={nombre}
-                  onChange={(e)=>{setNombre(e.target.value)}}
+                  name='nombre'
+                  onChange={handleInputs}
+                  // onChange={(e)=>{setNombre(e.target.value)}}
                />
             </div>
 
@@ -39,6 +64,9 @@ const Formulario = () => {
                   type='text'
                   placeholder='Nombre del propietario'
                   className='border-2 w-full p-2 mt-2 rounded-md'
+                  value={propietario}
+                  name='propietario'
+                  onChange={handleInputs}
                />
             </div>
 
@@ -49,6 +77,9 @@ const Formulario = () => {
                   type='email'
                   placeholder='email propietario'
                   className='border-2 w-full p-2 mt-2 rounded-md'
+                  value={email}
+                  name='email'
+                  onChange={handleInputs}
                />
             </div>
 
@@ -58,12 +89,20 @@ const Formulario = () => {
                id='alta'
                   type='date'
                   className='border-2 w-full p-2 mt-2 rounded-md'
+                  value={fecha}
+                  name='fecha'
+                  onChange={handleInputs}
                />
             </div>
 
             <div className='mb-5'>
                <label htmlFor='sintomas' className='block text-gray-700 uppercase font-bold'>Sintomas</label>
-               <textarea className='border-2 w-full p-2 mt-2 rounded-md' placeholder='describe sintomas' name="" id="sintomas" cols="30"></textarea>
+               <textarea
+                value={sintomas}
+                name='sintomas'
+                onChange={handleInputs}               
+               className='border-2 w-full p-2 mt-2 rounded-md'
+                placeholder='describe sintomas' id="sintomas" cols="30"></textarea>
             </div>
 
             <input
