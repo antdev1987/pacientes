@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Formulario = () => {
+const Formulario = ({setPacientes}) => {
    // const [nombre, setNombre] = useState('')
    const [input, setInput] =useState({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
    const {nombre,propietario,email,fecha,sintomas} = input
@@ -18,6 +18,15 @@ const Formulario = () => {
          return
       }
 
+      setPacientes((prev)=>{
+         return [
+            ...prev,
+            input
+         ]
+      })
+
+      //reiniciando formulario
+      setInput({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
       setError(false)
    }
 
