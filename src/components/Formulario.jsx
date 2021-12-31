@@ -3,31 +3,32 @@ import React, {useState} from 'react'
 const Formulario = () => {
    // const [nombre, setNombre] = useState('')
    const [input, setInput] =useState({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
-
    const {nombre,propietario,email,fecha,sintomas} = input
 
+   const [error,setError] = useState(false)
+
+   //managing when user click the submit button
    const handleSubmit =(e)=>{
       e.preventDefault()
 
 
       if([nombre,propietario,email,fecha,sintomas].includes('')){
          console.log('todo es obligatorio')
-      }else{
-         console.log('todo salio bien')
+         setError(true)
+         return
       }
 
-      
+      setError(false)
    }
 
+   //managing the inputs value
    const handleInputs =(e)=>{
-
       setInput(
          {
             ...input,
             [e.target.name]:e.target.value
          }
       )
-
    }
 
 
@@ -43,6 +44,15 @@ const Formulario = () => {
          </p>
 
          <form onSubmit={handleSubmit} className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'> 
+
+            {error && 
+               (
+                  <div className='bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md'>
+                     <p>todos los campos son obligatorios</p>
+                  </div>
+               )
+            }
+
             <div className='mb-5'>
                <label htmlFor='mascota' className='block text-gray-700 uppercase font-bold'>Nombre Mascota</label>
                <input
