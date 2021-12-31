@@ -9,6 +9,14 @@ const Formulario = ({setPacientes}) => {
 
    const [error,setError] = useState(false)
 
+   //generando el id
+   const generateId =()=>{
+      const random = Math.random().toString(36).substring(2)
+      const fecha = Date.now().toString(36)
+
+      return random + fecha
+   }
+
    //managing when user click the submit button
    const handleSubmit =(e)=>{
       e.preventDefault()
@@ -37,7 +45,8 @@ const Formulario = ({setPacientes}) => {
       setInput(
          {
             ...input,
-            [e.target.name]:e.target.value
+            [e.target.name]:e.target.value,
+            id:generateId()
          }
       )
    }
