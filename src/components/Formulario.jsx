@@ -11,6 +11,11 @@ const Formulario = ({setPacientes,paciente}) => {
 
    useEffect(()=>{
       console.log(paciente)
+      console.log(!!Object.keys(paciente).length)
+
+      if(!!Object.keys(paciente).length){
+         setInput(paciente)
+      }
 
    }, [paciente])
 
