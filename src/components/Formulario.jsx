@@ -3,17 +3,19 @@ import React, {useState, useEffect} from 'react'
 import Error from './Error'
 
 const Formulario = ({setPacientes,paciente}) => {
-   // const [nombre, setNombre] = useState('')
    const [input, setInput] =useState({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
    const {nombre,propietario,email,fecha,sintomas} = input
-
+   // esto es para validar un mensaje si hay un campo faltante sin llenar
    const [error,setError] = useState(false)
 
    useEffect(()=>{
       console.log(paciente)
       console.log(!!Object.keys(paciente).length)
-
-      if(!!Object.keys(paciente).length){
+      console.log(!!paciente.id)
+      // if(!!Object.keys(paciente).length){
+      //    setInput(paciente)
+      // }
+      if(!!paciente.id){
          setInput(paciente)
       }
 
@@ -88,7 +90,6 @@ const Formulario = ({setPacientes,paciente}) => {
                   value={nombre}
                   name='nombre'
                   onChange={handleInputs}
-                  // onChange={(e)=>{setNombre(e.target.value)}}
                />
             </div>
 
@@ -142,7 +143,7 @@ const Formulario = ({setPacientes,paciente}) => {
 
             <input
                type='submit'
-               value='agregar paciente'
+               value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
                className='bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer'
             />
 
