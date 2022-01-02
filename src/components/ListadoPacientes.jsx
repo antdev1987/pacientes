@@ -1,7 +1,7 @@
 import React from 'react'
 import Paciente from './Paciente'
 
-const ListadoPacientes = ({ pacientes }) => {
+const ListadoPacientes = ({ pacientes, setPaciente }) => {
 
    console.log(pacientes.length)
 
@@ -37,7 +37,7 @@ const ListadoPacientes = ({ pacientes }) => {
 
                {pacientes.map(paciente =>
                (
-                  <Paciente key={paciente.id} paciente={paciente} />
+                  <Paciente key={paciente.id} paciente={paciente} setPaciente={setPaciente} />
                )
                )}
             </div>
