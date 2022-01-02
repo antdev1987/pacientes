@@ -1,6 +1,6 @@
 import Paciente from './Paciente'
 
-const ListadoPacientes = ({ pacientes, setPaciente }) => {
+const ListadoPacientes = ({ pacientes, setPaciente, setPacientes }) => {
 
    return (
 
@@ -29,7 +29,7 @@ const ListadoPacientes = ({ pacientes, setPaciente }) => {
 
                {pacientes.map(paciente =>
                (
-                  <Paciente key={paciente.id} paciente={paciente} setPaciente={setPaciente} />
+                  <Paciente key={paciente.id} setPacientes={setPacientes} paciente={paciente} setPaciente={setPaciente} />
                )
                )}
             </div>
