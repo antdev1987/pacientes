@@ -40,8 +40,6 @@ const ListadoPacientes = ({ pacientes }) => {
                   <Paciente key={paciente.id} paciente={paciente} />
                )
                )}
-
-
             </div>
          )}
 
