@@ -1,21 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Error from './Error'
 
-const Formulario = ({setPacientes,paciente}) => {
-   const [input, setInput] =useState({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
-   const {nombre,propietario,email,fecha,sintomas} = input
+const Formulario = ({ setPacientes, paciente,setPaciente }) => {
+   const [input, setInput] = useState({ nombre: '', propietario: '', email: '', fecha: '', sintomas: '' })
+   const { nombre, propietario, email, fecha, sintomas } = input
    // esto es para validar un mensaje si hay un campo faltante sin llenar
-   const [error,setError] = useState(false)
+   const [error, setError] = useState(false)
 
-   useEffect(()=>{
-      console.log(paciente)
-      console.log(!!Object.keys(paciente).length)
-      console.log(!!paciente.id)
-      // if(!!Object.keys(paciente).length){
-      //    setInput(paciente)
-      // }
-      if(!!paciente.id){
+   useEffect(() => {
+     
+      if (!!paciente.id) {
          setInput(paciente)
       }
 
@@ -23,43 +18,60 @@ const Formulario = ({setPacientes,paciente}) => {
 
 
    //generando el id
-   const generateId =()=>{
+   const generateId = () => {
       const random = Math.random().toString(36).substring(2)
       const fecha = Date.now().toString(36)
-
       return random + fecha
    }
 
    //managing when user click the submit button
-   const handleSubmit =(e)=>{
+   const handleSubmit = (e) => {
       e.preventDefault()
 
 
-      if([nombre,propietario,email,fecha,sintomas].includes('')){
+      if ([nombre, propietario, email, fecha, sintomas].includes('')) {
          console.log('todo es obligatorio')
          setError(true)
          return
       }
 
-      setPacientes((prev)=>{
-         return [
-            ...prev,
-            input
-         ]
-      })
+      const bd = input
 
+
+      if (paciente.id) {
+         bd.id = paciente.id
+        
+         setPacientes((prev)=>{
+            return prev.map((item)=>{
+               return item.id === paciente.id? bd: item 
+            })
+         })
+      }else{
+         
+         bd.id = generateId()
+         setPacientes((prev) => {
+            return [
+               ...prev,
+               bd,
+               
+            ]
+         })
+      }
+
+      
       //reiniciando formulario
-      setInput({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
+      setPaciente({})
+      setInput({ nombre: '', propietario: '', email: '', fecha: '', sintomas: '' })
       setError(false)
    }
 
+   
    //managing the inputs value
-   const handleInputs =(e)=>{
+   const handleInputs = (e) => {
       setInput(
          {
             ...input,
-            [e.target.name]:e.target.value,
-            id:generateId()
+            [e.target.name]: e.target.value
          }
       )
    }
@@ -76,14 +88,14 @@ const Formulario = ({setPacientes,paciente}) => {
             <span className='text-indigo-600 font-bold'>Administralos</span>
          </p>
 
-         <form onSubmit={handleSubmit} className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'> 
+         <form onSubmit={handleSubmit} className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'>
 
-            {error && <Error mensaje='todos los campos son obligatorios' /> }
+            {error && <Error mensaje='todos los campos son obligatorios' />}
 
             <div className='mb-5'>
                <label htmlFor='mascota' className='block text-gray-700 uppercase font-bold'>Nombre Mascota</label>
                <input
-               id='mascota'
+                  id='mascota'
                   type='text'
                   placeholder='Nombre de la Mascota'
                   className='border-2 w-full p-2 mt-2 rounded-md'
@@ -96,7 +108,7 @@ const Formulario = ({setPacientes,paciente}) => {
             <div className='mb-5'>
                <label htmlFor='propietario' className='block text-gray-700 uppercase font-bold'>Nombre Propietario</label>
                <input
-               id='propietario'
+                  id='propietario'
                   type='text'
                   placeholder='Nombre del propietario'
                   className='border-2 w-full p-2 mt-2 rounded-md'
@@ -109,7 +121,7 @@ const Formulario = ({setPacientes,paciente}) => {
             <div className='mb-5'>
                <label htmlFor='email' className='block text-gray-700 uppercase font-bold'>email</label>
                <input
-               id='email'
+                  id='email'
                   type='email'
                   placeholder='email propietario'
                   className='border-2 w-full p-2 mt-2 rounded-md'
@@ -122,7 +134,7 @@ const Formulario = ({setPacientes,paciente}) => {
             <div className='mb-5'>
                <label htmlFor='alta' className='block text-gray-700 uppercase font-bold'>alta</label>
                <input
-               id='alta'
+                  id='alta'
                   type='date'
                   className='border-2 w-full p-2 mt-2 rounded-md'
                   value={fecha}
@@ -134,11 +146,11 @@ const Formulario = ({setPacientes,paciente}) => {
             <div className='mb-5'>
                <label htmlFor='sintomas' className='block text-gray-700 uppercase font-bold'>Sintomas</label>
                <textarea
-                value={sintomas}
-                name='sintomas'
-                onChange={handleInputs}               
-               className='border-2 w-full p-2 mt-2 rounded-md'
-                placeholder='describe sintomas' id="sintomas" cols="30"></textarea>
+                  value={sintomas}
+                  name='sintomas'
+                  onChange={handleInputs}
+                  className='border-2 w-full p-2 mt-2 rounded-md'
+                  placeholder='describe sintomas' id="sintomas" cols="30"></textarea>
             </div>
 
             <input

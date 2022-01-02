@@ -16,7 +16,7 @@ function App() {
       <Header />
 
       <div className='mt-12 md:flex'>
-        <Formulario setPacientes={setPacientes} paciente={paciente} />
+        <Formulario setPacientes={setPacientes} paciente={paciente} setPaciente={setPaciente} />
         <ListadoPacientes pacientes={pacientes} setPaciente={setPaciente}/>
       </div>
 
