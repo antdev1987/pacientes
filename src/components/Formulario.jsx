@@ -1,13 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import Error from './Error'
 
-const Formulario = ({setPacientes}) => {
+const Formulario = ({setPacientes,paciente}) => {
    // const [nombre, setNombre] = useState('')
    const [input, setInput] =useState({nombre:'',propietario:'',email:'',fecha:'',sintomas:''})
    const {nombre,propietario,email,fecha,sintomas} = input
 
    const [error,setError] = useState(false)
+
+   useEffect(()=>{
+      console.log(paciente)
+
+   }, [paciente])
+
 
    //generando el id
    const generateId =()=>{

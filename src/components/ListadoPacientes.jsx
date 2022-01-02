@@ -1,11 +1,6 @@
-import React from 'react'
 import Paciente from './Paciente'
 
 const ListadoPacientes = ({ pacientes, setPaciente }) => {
-
-   console.log(pacientes.length)
-
-   console.log(!(pacientes.length))
 
    return (
 
@@ -19,9 +14,6 @@ const ListadoPacientes = ({ pacientes, setPaciente }) => {
                   No hay Pacientes {''}
                   <span className='text-indigo-600 font-bold'>Crea una Nuevo</span>
                </p>
-
-
-
             </div>
          )}
 
