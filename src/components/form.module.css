@@ -1,0 +1,44 @@
+.form{
+    width: 49%;
+}
+
+.formComponent{
+    padding:1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.formP{
+    margin-top: 1rem;
+}
+
+.formCard {
+    background-color: white;
+    border-radius: 10px;
+    padding:2rem;
+}
+
+.formCard label{
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.formCard input{
+     display: block; 
+    width: 100%;
+    
+    padding:.3rem;
+}
+
+.inputWrapper{
+    margin-bottom: 1rem; 
+}
+
+.btn{
+    background-color: blue;
+    padding: 0.6rem;
+    border-radius: 5px;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+}
