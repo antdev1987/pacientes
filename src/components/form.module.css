@@ -42,3 +42,14 @@
     color: white;
     cursor: pointer;
 }
+
+.errorM{
+    margin-bottom: .8rem;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: red;
+    border-radius: 5px;
+    padding:5px;
+    color:white;
+    font-weight: 800;
+}

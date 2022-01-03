@@ -1,7 +1,21 @@
 import React from 'react'
 import styles from './listadoPacientes.module.css'
 
-const PacienteList = ({paciente}) => {
+const PacienteList = ({paciente, setListPaciente, setBdPacientes}) => {
+
+
+    const deletion = (e)=>{
+
+        setBdPacientes((prev)=>{
+
+            return prev.filter((item)=>{
+                return paciente.id !== item.id
+            })
+
+        })
+
+    }
+    
 
     return (
         <>
@@ -13,8 +27,14 @@ const PacienteList = ({paciente}) => {
                 <p>Fecha Alta <span>{paciente.fecha}</span></p>
                 <p>Sintomas <span>{paciente.sintomas}</span></p>
 
-                <button className={styles.btn}>Editar</button>
-                <button className={styles.btn}>Eliminar</button>
+                <button
+                 className={styles.btn}
+                 onClick={()=> setListPaciente(paciente)}
+                 >Editar</button>
+                <button 
+                className={styles.btn}
+                onClick={deletion}
+                >Eliminar</button>
 
             </div>
         </>

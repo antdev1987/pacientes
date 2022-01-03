@@ -9,14 +9,15 @@ import './App.css';
 function App() {
 
   const [bdPacientes, setBdPacientes] = useState([])
+  const [listPaciente,setListPaciente] = useState({})
   
   return (
     <div className="App">
       <Header />
 
       <div className='formListado'>
-      <Form setBdPacientes={setBdPacientes}/>
-      <ListadoPacientes bdPacientes={bdPacientes} />
+      <Form setBdPacientes={setBdPacientes} listPaciente={listPaciente} setListPaciente={setListPaciente} />
+      <ListadoPacientes setBdPacientes={setBdPacientes} bdPacientes={bdPacientes} setListPaciente={setListPaciente}/>
       </div>
     </div>
   )
