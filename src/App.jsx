@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 import Formulario from './components/Formulario'
 import Header from './components/Header'
@@ -9,6 +9,23 @@ function App() {
 
   const [pacientes, setPacientes] = useState([])
   const [paciente,setPaciente]= useState({})
+
+
+  useEffect(()=>{
+    
+    const getItm = ()=>{
+      const saved = localStorage.getItem('pacientes') 
+      const intial = JSON.parse(saved)
+
+      setPacientes(intial ?? [])
+    }
+    getItm()
+  },[])
+
+
+  useEffect(()=>{
+    localStorage.setItem('pacientes', JSON.stringify(pacientes))
+  },[pacientes])
 
 
   return (
