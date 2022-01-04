@@ -44,7 +44,8 @@ const ListadoPacientes = ({ bdPacientes, setListPaciente, setBdPacientes}) => {
                      {bdPacientes.map(paciente =>
                      (
                         <PacienteList setBdPacientes={setBdPacientes} setListPaciente={setListPaciente} key={paciente.id} paciente={paciente} />
-                     ))}
+                     )
+                     )}
 
                   </div>
 
